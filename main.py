@@ -5,22 +5,15 @@ import logging
 from dotenv import load_dotenv
 import os
 
-
-
-TOKEN = os.getenv("token")
-
-from dotenv import load_dotenv
-import os
-
 print("Loading .env from:", os.path.abspath(".env"))
 load_dotenv()
-print("token after load_dotenv:", os.getenv("token"))
 
-token = os.getenv("TOKEN")
-print("token after explicit load_dotenv:", token)
+# После загрузки dotenv читаем переменную (регистр ключа должен совпадать)
+TOKEN = os.getenv("TOKEN")
+print("token after load_dotenv:", TOKEN)
 
 import os
-print(os.listdir()) 
+print(os.listdir())
 
 from hrndlers.users.message import register_user_messages
 
@@ -33,7 +26,7 @@ async def main():
     )
     logger.error("Starting bot")
 
-    bot = Bot(token, default=DefaultBotProperties(parse_mode='HTML'))  
+    bot = Bot(TOKEN, default=DefaultBotProperties(parse_mode='HTML'))  
     dp = Dispatcher()
     register_user_messages(dp)
     await dp.start_polling(bot)
